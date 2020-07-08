@@ -1,0 +1,129 @@
+#-*- coding:utf-8 -*-
+#@Date   : 2018/12/16
+#@Author : suyifan
+#@File   : test_2.py
+
+
+# N = 3
+# # K = 7
+# # # 181,292,707,818,929]
+# # N = 2
+# # K = 1
+# # #[10,12,21,23,32,34,43,45,54,56,65,67,76,78,87,89,98]
+# # class Solution:
+# #     def __init__(self):
+# #         self.ans = []
+# #     def numsSameConsecDiff(self, N, K):
+# #         """
+# #         :type N: int
+# #         :type K: int
+# #         :rtype: List[int]
+# #         """
+# #         # self.solve(N,K,0,True)
+# #
+# #         if N == 1:
+# #             start = 0
+# #         else:
+# #             start = 1
+# #         for i in range(start,10):
+# #             self.solve(N,K,i,10,0)
+# #         return self.ans
+# #
+# #
+# #     def solve(self,n,k,start,end,temp):
+# #         if n == 0:
+# #             self.ans.append(temp)
+# #             return
+# #
+# #         if start < end:
+# #             plus = 1
+# #         else:
+# #             plus = -1
+# #         # for i in range(start,end,plus *K):
+# #         temp = temp * 10 + start
+# #         if start + K <10:
+# #             self.solve(n-1,k,start+k,10,temp)
+# #         elif start-k >= 0:
+# #             self.solve(n-1,k,start-k,-1,temp)
+# #         else:
+# #             return
+# #         temp = (temp-start)//10
+# #
+# #
+# # a = Solution()
+# # q = a.numsSameConsecDiff(N,K)
+# # print("q =",q)
+
+
+# N = 3
+# K = 7
+# 181,292,707,818,929]
+N = 2
+K = 1
+# print(len([10,12,21,23,32,34,43,45,54,56,65,67,76,78,87,89,98]))
+
+N = 1
+K = 0
+
+# N = 1
+# K = 6
+
+class Solution:
+    def __init__(self):
+        self.ans = []
+    def numsSameConsecDiff(self, N, K):
+        """
+        :type N: int
+        :type K: int
+        :rtype: List[int]
+        """
+        # self.solve(N,K,0,True)
+
+        self.stack = []
+        if N == 1:
+            start = 0
+        else:
+            start = 1
+        for i in range(start,10):
+            self.stack.append(i)
+
+        while self.stack:
+            i = self.stack.pop()
+            if len(str(i)) == N:
+                self.ans.append(i)
+                continue
+            yushu = i % 10
+            if yushu + K < 10:
+                self.plus(i,K,N,yushu)
+            if yushu - K >= 0:
+                self.min1(i,K,N,yushu)
+        # print(len(self.ans))
+        return list(set(self.ans))
+    def plus(self,i,k,n,yushu):
+        if len(str(i)) == n:
+            self.ans.append(i)
+            return
+        # else:
+        #     self.stack.append(i)
+        i = i*10 + (yushu+k)
+        if len(str(i)) == n:
+            self.ans.append(i)
+        else:
+            self.stack.append(i)
+
+        return
+
+    def min1(self,i,k,n,yushu):
+        # if len(str(i)) == n:
+        #     self.ans.append(i)
+        #     return
+        i = i*10 + (yushu-k)
+        if len(str(i)) == n:
+            self.ans.append(i)
+        else:
+            self.stack.append(i)
+        return
+
+a = Solution()
+q = a.numsSameConsecDiff(N,K)
+print("q =",q)
