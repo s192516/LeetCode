@@ -24,7 +24,7 @@ class Solution:
         if left == right:
 
             rtype.append(nums.copy())
-            print(nums)
+            # print(nums)
             return rtype
 
         for i in range(left, right + 1):
@@ -99,3 +99,31 @@ print(len( q))
 # q = a.permute(nums)
 # print("q =",q)
 # print(len( q))
+
+nums = [1,2,3]
+
+class Solution:
+    def __init__(self):
+        self.ans = []
+    def permute(self, nums):
+        left = 0
+        right = len(nums) -1
+        self.slove(nums,left,right)
+
+        return self.ans
+
+    def slove(self,nums,left,right):
+        if left == right:
+            self.ans.append(nums[:])
+            return
+
+        for i in range(left,right+1):
+            nums[left],nums[right] = nums[right],nums[left]
+            self.slove(nums,left+1,right)
+            nums[left],nums[right] = nums[right],nums[left]
+
+
+
+a = Solution()
+q = a.permute(nums)
+print("q =",q)

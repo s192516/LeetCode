@@ -6,7 +6,7 @@
 
 nums = [1,2,3]
 
-
+'''
 class Solution:
     def __init__(self):
         self.rtype = []
@@ -28,12 +28,12 @@ class Solution:
 
         if left == right:
             rtype.append(nums[i:])
-            print(nums)
+            # print(nums)
             return rtype
         i += 1
-        print("i=" ,i,end="   ")
+        # print("i=" ,i,end="   ")
         self.i += 1
-        print("self =",self.i)
+        # print("self =",self.i)
         for i in range(left,right+1):
 
             nums[i], nums[left] = nums[left], nums[i]
@@ -56,5 +56,50 @@ a = Solution()
 q = a.subsets(nums)
 print("q =",q)
 
+'''
+
+'''
 # [[1], [2], [3], [3, 2],[2, 1],[3, 1], [3, 2, 1],
 #  [2],  [1], [3],  [1],[2], [1], [1, 2], [2]]
+
+nums = [1,2,3]
+class Solution:
+    def subsets(self, nums):
+        ans = [[]]
+        for line in nums:
+            for j in ans[:]:
+                ans.append(j+[line])
+        return ans
+
+
+a = Solution()
+q = a.subsets(nums)
+print("q =",q)
+'''
+
+
+''''''
+
+
+class Solution:
+    def subsets(self, nums) :
+        def backtrack(first=0, curr=[]):
+            # if the combination is done
+            if len(curr) == k:
+                output.append(curr[:])
+            for i in range(first, n):
+                # add nums[i] into the current combination
+                curr.append(nums[i])
+                # use next integers to complete the combination
+                backtrack(i + 1, curr)
+                # backtrack
+                curr.pop()
+
+        output = []
+        n = len(nums)
+        for k in range(n + 1):
+            backtrack()
+        return output
+
+
+''''''

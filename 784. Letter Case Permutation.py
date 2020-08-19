@@ -7,6 +7,7 @@
 
 S = "a1b2"
 class Solution:
+    '''
     def letterCasePermutation(self, S):
         """
         :type S: str
@@ -38,8 +39,35 @@ class Solution:
             # ans.append(temp)
         print1(s,"")
         return ans
+    '''
+
+    def letterCasePermutation(self,S):
+        if not S:
+            return []
+        S = S.lower()
+        ans = []
+        cur = ""
+        ans = self.slove(S, cur, ans)
+        return ans
+
+    def slove(self,s, cur, ans):
+        if not s:
+            ans.append(cur)
+            return ans
+        
+        q = s[0]
+        if q.isdigit():
+            cur += q
+            self.slove(s[1:],cur,ans)
+        else:
+            for i in [q,chr(ord(q)-32)]:
+                cur += i
+                self.slove(s[1:],cur,ans)
+                cur = cur[:-1]
+        return ans
 
 
 a = Solution()
 q = a.letterCasePermutation(S)
 print("q =",q)
+

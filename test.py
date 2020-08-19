@@ -2879,16 +2879,23 @@
 # print(ans)
 
 
-import numpy as np
+# import numpy as np
+# import pdb
+#
+# # pdb.set_trace()
+# a1 = np.array([[1],[2],[3],[4],[5]])
+# c = 2
+# # print(a1 * c)
+# a1 = np.array([[1,2,3,4,5]])
+#
+# a2 = np.array([[1,2,3,4,5]])
 
-a1 = np.array([[1],[2],[3],[4],[5]])
-a1 = np.array([[1,2,3,4,5]]).T
 
-a2 = np.array([[1,2,3,4,5]])
-
-
-print(a1.shape,a2.shape)
+# print(a1.shape,a2.shape)
 
 # a1 = np.array([ [1,2],[3,4] ])
 # a2 = np.array([ [1,2,],[3,4]])
-print(np.matmul(a1,a2))
+# print(np.matmul(a1,a2))
+# print(a1.dot(a2))
+
+print("q".isdigit())
