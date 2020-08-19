@@ -35,7 +35,7 @@ class Solution:
                 if s[i] == s[j] and map1[i+1][j - 1]:
                     map1[i][j] = True
                     num += 1
-        print(map1)
+        # print(map1)
         return num
 
 a = Solution()
